@@ -9,9 +9,10 @@ import type { PageData } from './$types';
 </script>
 
 <body class="background">
-    {#each data.messages as message}
+    {#each data.session as message}
         <div>
-            <p>{message}</p>
+            <p>{message[0]}</p>
+            <p>{message[1]}</p>
         </div> 
     {/each}
     <div>
