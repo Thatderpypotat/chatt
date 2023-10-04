@@ -12,7 +12,7 @@
 <body class="body">
     <ul>
         {#each data.sessions as session}
-            <li><a href="/sessions/{session.sessionName}">{session.sessionName} - {session.messages.length} Messages</a></li>
+            <li><a href="/sessions/{session.id}">{session.sessionName} - {session.messages.length} Messages</a></li>
         {/each}
     </ul>
 

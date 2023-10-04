@@ -3,14 +3,14 @@ import type { PageServerLoad } from './$types';
 import { prisma } from '$lib';
 
 export const load = (async ({params}) => {
-    let session = params.session;
-    let messages = await prisma.message.findMany({where:{sessionsId: session}})
+    let sessionId = Number(params.sessionId);
+    let messages = await prisma.message.findMany({where:{sessionsId: sessionId},include:{user:{select:{name:true}}}})
 
-    if (!prisma.session.findFirst({where:{sessionName:session}})) {
+    if (!prisma.session.findFirst({where:{id:sessionId}})) {
         throw error(418, "session not found");
     }
 
-    return {session, messages};
+    return {session: sessionId, messages};
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
