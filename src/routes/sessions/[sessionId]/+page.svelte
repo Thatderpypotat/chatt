@@ -11,6 +11,7 @@ import type { PageData } from './$types';
 <body class="background">
     {#each data.messages as message}
         <div>
+            <p>{message.user}</p>
             <p>{message.message}</p>
         </div> 
     {/each}
