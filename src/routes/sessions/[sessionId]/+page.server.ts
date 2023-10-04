@@ -1,4 +1,4 @@
-import { error, type Actions, fail, redirect } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { prisma } from '$lib';
 
@@ -13,11 +13,11 @@ export const load = (async ({params}) => {
     return {session: sessionId, messages};
 }) satisfies PageServerLoad;
 
-export const actions: Actions = {
+export const actions = {
     text :async ({request, params, cookies}) => {
-        let session  = params.session;
+        let session  = Number(params.sessionId);
         let user = cookies.get("username");
-        let session2 = await prisma.session.findFirst({where: {sessionName: session}})
+        let session2 = await prisma.message.findFirst({where: {sessionsId: session}})
         let createdBy = await prisma.user.findFirst({where: {name: user}})
 
 
