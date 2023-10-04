@@ -39,7 +39,7 @@ export const actions = {
             return fail(400, {message: 'Message cannot be empty'});
         } else{
             await prisma.message.create({
-                data: { message: message, sessionsId: session, userId: createdBy.id },
+                data: { message: message, sessionsId: session2.sessionsId, userId: createdBy.id },
               });
         }
         
