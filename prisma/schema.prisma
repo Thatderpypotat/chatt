@@ -19,7 +19,7 @@ model User {
 
 model session {
   id          Int       @id @default(autoincrement())
-  sessionName String @unique
+  sessionName String
   messages    message[]
 }
 
