@@ -4,7 +4,7 @@ import { prisma } from '$lib';
 
 export const load = (async ({params}) => {
     let session = params.session;
-    let messages = await prisma.session.findMany({where:{sessionName: session}})
+    let messages = await prisma.message.findMany({where:{sessionsId: session}})
 
     if (!prisma.session.findFirst({where:{sessionName:session}})) {
         throw error(418, "session not found");
