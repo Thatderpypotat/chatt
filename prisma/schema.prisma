@@ -15,6 +15,7 @@ model User {
   name                 String    @unique
   youdontknowwhatdisis String
   message              message[]
+  salt     String
 }
 
 model session {

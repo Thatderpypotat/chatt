@@ -17,7 +17,7 @@ export const actions = {
     text :async ({request, params, cookies}) => {
         let session  = Number(params.sessionId);
         let user = cookies.get("username");
-        let session2 = await prisma.message.findFirst({where: {sessionsId: session}})
+        let session2 = await prisma.session.findFirst({where: {id: session}})
         let createdBy = await prisma.user.findFirst({where: {name: user}})
 
 
@@ -39,7 +39,7 @@ export const actions = {
             return fail(400, {message: 'Message cannot be empty'});
         } else{
             await prisma.message.create({
-                data: { message: message, sessionsId: session2.sessionsId, userId: createdBy.id },
+                data: { message: message, sessionsId: session2.id, userId: createdBy.id },
               });
         }
         
