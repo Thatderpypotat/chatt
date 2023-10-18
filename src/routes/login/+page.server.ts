@@ -1,7 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { prisma } from '$lib';
-import * as crypto from "crypto";
+import * as crypto from "node:crypto";
 
 function hashPassword(password : string) {
     const salt = crypto.randomBytes(16).toString('hex');
